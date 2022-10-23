@@ -1,11 +1,6 @@
-package main;
+package ClientMain;
 
-import com.sun.tools.javac.Main;
-import javafx.scene.control.Label;
-
-import java.awt.*;
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 import java.io.BufferedReader;

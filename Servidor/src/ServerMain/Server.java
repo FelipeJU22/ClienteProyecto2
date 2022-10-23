@@ -1,6 +1,4 @@
-package main;
-
-import javafx.scene.control.Label;
+package ServerMain;
 
 import java.io.*;
 import java.net.ServerSocket;
