@@ -59,7 +59,7 @@ public class Inicio implements Initializable{
     private List fechas = new ArrayList();
     private List palabras = new ArrayList();
     FileChooser seleccionador = new FileChooser();
-    public String seleccionar(ActionEvent event) throws FileNotFoundException {
+    public void seleccionar(ActionEvent event) throws FileNotFoundException {
         lista = FXCollections.observableArrayList();
         archivo = seleccionador.showOpenDialog(new Stage());
         path = String.valueOf(archivo);
@@ -159,15 +159,14 @@ public class Inicio implements Initializable{
         this.fecha.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
         this.cantidad.setCellValueFactory(new PropertyValueFactory<>("cantPal"));
 
-        for(int i = 0; i < paths.size() ; i++){
-
-            direcciones += paths.get(i) + " LeoEsDios ";
-            System.out.println(direcciones);
-        }
         this.tabla.setItems(lista);
+        crearDirecciones(path);
+    }
+    public String crearDirecciones(String path){
+        direcciones += path + " LeoEsDios ";
+        System.out.println(direcciones);
         return direcciones;
     }
-
     public void pasar(ActionEvent event) throws IOException {
         enviarPaths(direcciones);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("cliente.fxml"));

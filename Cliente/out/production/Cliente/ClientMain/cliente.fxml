@@ -3,11 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="417.0" prefWidth="672.0" spacing="20.0" style="-fx-background-color: #788199;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientMain.MainController">
+<VBox alignment="CENTER" prefHeight="545.0" prefWidth="552.0" spacing="20.0" style="-fx-background-color: #788199;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientMain.MainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -28,4 +29,16 @@
    </Label>
    <TextField fx:id="texto" prefHeight="25.0" prefWidth="759.0" style="-fx-background-color: #b5bac9;" />
    <Label text="Resultados de búsqueda" />
+   <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" />
+   <Button mnemonicParsing="false" text="&lt;">
+      <font>
+         <Font name="DejaVu Sans Condensed Bold" size="12.0" />
+      </font>
+   </Button>
+   <Label text="x de y" />
+   <Button mnemonicParsing="false" text="&gt;">
+      <font>
+         <Font name="DejaVu Sans Condensed Bold" size="12.0" />
+      </font>
+   </Button>
 </VBox>
