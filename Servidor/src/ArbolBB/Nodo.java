@@ -1,16 +1,16 @@
 package ArbolBB;
 
 public class Nodo {
-    private int dato;
+    private String dato;
     private Nodo izquierda, derecha;
 
-    public Nodo(int dato) {
+    public Nodo(String dato) {
         this.dato = dato;
         this.izquierda = this.derecha = null;
     }
 
 
-    public int getDato() {
+    public String getDato() {
         return dato;
     }
 

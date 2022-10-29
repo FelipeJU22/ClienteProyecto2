@@ -3,12 +3,16 @@ package ServerMain;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Server {
     private ServerSocket serverSocket;
     private Socket socket;
     private BufferedReader readerS;
     private BufferedWriter writerS;
+    private List mensaje = new ArrayList();
 
     public Server(ServerSocket serverSocket) {
         try {
@@ -36,9 +40,22 @@ public class Server {
             @Override
             public void run() {
                 while (socket.isConnected()) {
+                    String a = "";
                     try {
                         String messageFromClient = readerS.readLine();
                         System.out.println(messageFromClient);
+                        String [] mensaje = messageFromClient.split("@@@");
+                        String recibido = Arrays.toString(mensaje);
+                        System.out.println(Arrays.toString(mensaje));;
+                        if(mensaje[0].equals("0")){
+                            System.out.println("Crear árbol binario");
+                            System.out.println();
+                        }
+                        if(messageFromClient.equals("paths recibidos: ")){
+
+                            a = messageFromClient;
+                            System.out.println(a);
+                        }
                     } catch (IOException e) {
                         System.out.println("Error recibiendo mensaje");
                         break;

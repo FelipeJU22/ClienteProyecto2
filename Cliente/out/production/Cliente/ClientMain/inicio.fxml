@@ -9,42 +9,44 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #998A8A;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientMain.Inicio">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="771.0" style="-fx-background-color: #998A8A;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientMain.Inicio">
    <children>
-      <Button fx:id="seleccionar" layoutX="213.0" layoutY="121.0" mnemonicParsing="false" onAction="#seleccionar" style="-fx-background-color: #E8E0E0;" text="Seleccionar archivos" textFill="#3c1111">
+      <Button fx:id="seleccionar" layoutX="308.0" layoutY="118.0" mnemonicParsing="false" onAction="#seleccionar" style="-fx-background-color: #E8E0E0;" text="Seleccionar archivos" textFill="#3c1111">
          <font>
             <Font name="Arial Rounded MT Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="192.0" layoutY="61.0" text="Text Finder" textFill="#3c1111">
+      <Label layoutX="284.0" layoutY="42.0" text="Text Finder" textFill="#3c1111">
          <font>
             <Font name="ItalicC" size="29.0" />
          </font>
       </Label>
-      <Label layoutX="183.0" layoutY="178.0" text="Archivos seleccionados:" textFill="#3c1111">
+      <Label layoutX="266.0" layoutY="169.0" text="Archivos seleccionados:" textFill="#3c1111">
          <font>
             <Font name="Courier New" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="190.0" layoutY="63.0" text="Text Finder" textFill="#614040">
+      <Label layoutX="286.0" layoutY="41.0" text="Text Finder" textFill="#614040">
          <font>
             <Font name="ItalicC" size="29.0" />
          </font>
       </Label>
-      <Button fx:id="sig" layoutX="265.0" layoutY="352.0" mnemonicParsing="false" onAction="#pasar" style="-fx-background-color: #E8E0E0;" text="Siguiente" textFill="#3c1111">
+      <Button fx:id="sig" layoutX="359.0" layoutY="507.0" mnemonicParsing="false" onAction="#pasar" style="-fx-background-color: #E8E0E0;" text="Siguiente" textFill="#3c1111">
          <font>
             <Font name="Arial Rounded MT Bold" size="12.0" />
          </font>
       </Button>
-      <TableView layoutX="174.0" layoutY="207.0" prefHeight="132.0" prefWidth="254.0">
-        <columns>
-          <TableColumn prefWidth="253.0" text="Archivos" />
-        </columns>
-      </TableView>
-      <ImageView fitHeight="55.0" fitWidth="65.0" layoutX="133.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="55.0" fitWidth="65.0" layoutX="204.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Imágenes/lupa.PNG" />
          </image>
       </ImageView>
+      <TableView fx:id="tabla" layoutX="84.0" layoutY="202.0" prefHeight="250.0" prefWidth="599.0">
+        <columns>
+          <TableColumn fx:id="nombreArch" prefWidth="296.0" text="Nombre" />
+            <TableColumn fx:id="fecha" minWidth="0.0" prefWidth="156.0" text="Fecha de creación" />
+            <TableColumn fx:id="cantidad" prefWidth="146.0" text="Cantidad de palabras" />
+        </columns>
+      </TableView>
    </children>
 </Pane>

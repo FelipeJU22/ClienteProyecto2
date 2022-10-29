@@ -5,6 +5,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -18,12 +20,15 @@ public class MainController implements Initializable {
     @FXML
     private Button boton1;
     @FXML
+    private Button botonPalabra;
+    @FXML
     private TextField texto;
+
     private Inicio controladorInicio;
     private Stage stage;
 
     private Client client;
-    private String path;
+    private static String paths;
 
     @Override
     public void initialize(URL location, ResourceBundle resources){
@@ -38,10 +43,21 @@ public class MainController implements Initializable {
         boton1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                String clientMessage = texto.getText();
-                client.enviarMsjServidor(clientMessage);
+                client.enviarMsjServidor("0"+"@@@"+paths);
             }
         });
+        botonPalabra.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String clientMessage = texto.getText();
+                client.enviarMsjServidor("1"+ " *** "+ clientMessage);
+            }
+        });
+
+    }
+
+    static void recibirPaths(String path){
+        paths = path;
     }
 
     public void init(Stage stage, Inicio inicio) {

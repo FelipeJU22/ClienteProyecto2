@@ -30,6 +30,7 @@ public class Client {
         }
     }
 
+
     public void recibirMsjServidor() {
         new Thread(new Runnable() {
             @Override
@@ -46,4 +47,6 @@ public class Client {
             }
         }).start();
     }
+
 }
+
