@@ -56,7 +56,7 @@ public class Server {
                         System.out.println(Arrays.toString(mensaje));;
                         if(mensaje[0].equals("0")){
                             String [] arboles = mensaje[1].split(" LeoEsDios ");
-                            //System.out.println(Arrays.toString(arboles));
+                            System.out.println(Arrays.toString(arboles));
                             for(int i = 0; i < arboles.length; i++){
                                 String[] partes = arboles[i].split("\\.");
                                 String tipo = partes[partes.length-1];
