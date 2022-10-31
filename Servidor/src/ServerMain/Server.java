@@ -6,13 +6,11 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
+import javax.management.StringValueExp;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -21,6 +19,9 @@ public class Server {
     private BufferedWriter writerS;
     private List mensaje = new ArrayList();
     private List superLista = new ArrayList();
+    private List listaParseada = new ArrayList();
+    private List listaStrings = new ArrayList();
+    private String[] arboles = new String[0];
 
     public Server(ServerSocket serverSocket) {
         try {
@@ -53,7 +54,7 @@ public class Server {
                         String messageFromClient = readerS.readLine();
                         //System.out.println(messageFromClient);
                         String [] mensaje = messageFromClient.split("@@@");
-                        System.out.println(Arrays.toString(mensaje));;
+                        //System.out.println(Arrays.toString(mensaje));;
                         if(mensaje[0].equals("0")){
                             String [] arboles = mensaje[1].split(" LeoEsDios ");
                             System.out.println(Arrays.toString(arboles));
@@ -76,12 +77,12 @@ public class Server {
                                             if (!elemento.equals(" ")) {
                                                 finalDocx.add(divididoDocx[j]);
                                                 String Docxtemp = finalDocx.toString().replace("[", "");
-                                                Docx =Docxtemp.replace("]", "");
+                                                Docx = Docxtemp.replace("]", "");
                                             }
                                         }
                                         int tamano1 = divididoDocx.length - 1;
-                                        superLista.add(Docx);
-
+                                        superLista.add(finalDocx);
+                                        listaStrings.addAll(finalDocx);
                                     } catch (IOException e) {
                                         System.out.println(e);
                                     }
@@ -100,46 +101,82 @@ public class Server {
                                             if (!elemento.equals("")) {
                                                 finalPDF.add(divididoPDF[j]);
                                                 String pdftemp = finalPDF.toString().replace("[", "");
-                                                pdf =pdftemp.replace("]", "");
+                                                pdf = pdftemp.replace("]", "");
                                             }
                                         }
                                         int tamano2 = finalPDF.size();
-                                        superLista.add(pdf);
+                                        superLista.add(finalPDF);
+                                        listaStrings.addAll(finalPDF);
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
 
                                 }
-                                if(tipo.equals("txt")){
+                                if(tipo.equals("txt")) {
                                     File file = new File(arboles[i]);
                                     Scanner scan = new Scanner(file);
-                                    String textoFulltxt= "";
+                                    String textoFulltxt = "";
                                     List finalTXT = new ArrayList();
-                                    while(scan.hasNextLine()){
+                                    while (scan.hasNextLine()) {
                                         textoFulltxt = textoFulltxt + scan.nextLine();
                                     }
                                     String[] divididoTXT = textoFulltxt.split("[ \n\t\r,.;:!?(){}]");
                                     String TXT = "";
-                                    for(int j = 0; j < divididoTXT.length ; j++){
+                                    for (int j = 0; j < divididoTXT.length; j++) {
                                         String elemento = divididoTXT[j];
-                                        if(!elemento.equals("")){
+                                        if (!elemento.equals("")) {
                                             finalTXT.add(divididoTXT[j]);
                                             String TXTtemp = finalTXT.toString().replace("[", "");
                                             TXT = TXTtemp.replace("]", "");
                                         }
                                     }
                                     int tamano3 = finalTXT.size();
-                                    superLista.add(TXT);
+                                    superLista.add(finalTXT);
+                                    listaStrings.addAll(finalTXT);
                                 }
                                 //
                             }
-                            System.out.println(superLista);
+                            System.out.println(superLista + "       SUPERLISTA");
+                            System.out.println(listaStrings + "    STRINGS");
+                            System.out.println(Arrays.toString(arboles)+ "    ARBOLES");
+                            String[] listafinalsiosi = new String[4];
+                            int numero = 1;
+                            System.out.println("LLEGÓ HASTA AQUÍ ALELUYA");
+                            for(int x = 0; x < superLista.size(); x++){
+                                int prueba = 1;
+                                String[] lista = superLista.get(x).toString().replace("[","").replace("]","").split(",");
+                                //System.out.println(Arrays.toString(lista)+"    LISTA");
+                                for(int y = 0; y < lista.length; y++){
+                                    for(int z = 0; z < listaStrings.size(); z++){
+                                        if((listaStrings.get(z)).equals(lista[y]) || (" "+listaStrings.get(z)).equals(lista[y])){
+                                            listafinalsiosi[0] = listaStrings.get(z).toString();
+                                            listafinalsiosi[1] = arboles[x];
+                                            listafinalsiosi[2] = String.valueOf(numero);
+                                            listafinalsiosi[3] = String.valueOf(prueba);
+                                            prueba++;
+                                            numero++;
+                                            listaParseada.add(Arrays.toString(listafinalsiosi)) ;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            System.out.println(listaParseada);
+
+
+                            /** Aquí se crea el arbol de fish*/
+
+
+                            superLista.clear();
+                            listaStrings.clear();
+                            listaParseada.clear();
                         }
                         if(mensaje[0].equals("1")){
-                            System.out.println("Buscar una palabra");
+                            System.out.println("Buscar: " + mensaje[1]);
                         }
                         if(mensaje[0].equals("2")){
-                            System.out.println("Añadir archivo a arbol binario");
+                            System.out.println("Añadir: " + mensaje[1]);
+                            //borrararbol()
                         }
                         if(mensaje[0].equals("3")){
                             System.out.println("Eliminar archivo árbol binario");

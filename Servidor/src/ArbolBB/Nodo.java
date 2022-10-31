@@ -1,36 +1,24 @@
 package ArbolBB;
 
+import java.util.ArrayList;
+
 public class Nodo {
-    private String dato;
-    private Nodo izquierda, derecha;
 
-    public Nodo(String dato) {
-        this.dato = dato;
-        this.izquierda = this.derecha = null;
-    }
+    //atributos
+    public String palabra;
+    public String documento;
+    public String posGlobal;
+    public String posLocal;
+    public Nodo left;
+    public Nodo right;
 
-
-    public String getDato() {
-        return dato;
-    }
-
-    public Nodo getIzquierda() {
-        return izquierda;
-    }
-
-    public void setIzquierda(Nodo izquierda) {
-        this.izquierda = izquierda;
-    }
-
-    public Nodo getDerecha() {
-        return derecha;
-    }
-
-    public void setDerecha(Nodo derecha) {
-        this.derecha = derecha;
-    }
-
-    public void imprimirDato() {
-        System.out.println(this.getDato());
+    //metodos
+    public Nodo(String palabra, String documento, String posGlobal, String posLocal) {
+        this.palabra = palabra;
+        this.documento = documento;
+        this.posGlobal = posGlobal;
+        this.posLocal = posLocal;
+        this.left = null;
+        this.right = null;
     }
 }

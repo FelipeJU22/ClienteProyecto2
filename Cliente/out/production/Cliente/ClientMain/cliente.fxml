@@ -16,8 +16,11 @@
       <font>
          <Font name="DejaVu Serif Condensed Bold" size="12.0" />
       </font></Button>
-
-    <Label fx:id="welcomeText" />
+   <Button fx:id="botonAñadir" mnemonicParsing="false" style="-fx-background-color: #b5bac9;" text="Añadir documentos">
+      <font>
+         <Font name="DejaVu Serif Condensed Bold" size="12.0" />
+      </font>
+   </Button>
     <Button fx:id="botonPalabra" prefHeight="40.0" prefWidth="194.0" style="-fx-background-color: #b5bac9;" text="Presione para buscar">
       <font>
          <Font name="DejaVu Serif Condensed Bold" size="12.0" />

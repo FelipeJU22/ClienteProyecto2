@@ -1,86 +1,68 @@
 package ArbolBB;
 
-public class Arbol {
-    private Nodo raiz;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Stack;
 
-    public Arbol() {
-    }
+public class Arbol{
+    //atributos
+    public Nodo root;
 
-    /**public boolean existe(int busqueda) {
-        return existe(this.raiz, busqueda);
-    }
 
-    private boolean existe(Nodo n, String busqueda) {
-        if (n == null) {
-            return false;
-        }
-        if (n.getDato().equals(busqueda)) {
-            return true;
-        } else if (busqueda < n.getDato()) {
-            return existe(n.getIzquierda(), busqueda);
+    //metodos
+    public void addNode(String palabra, String documento, String posGlobal, String posLocal){
+        Nodo newNode = new Nodo(palabra, documento, posGlobal, posLocal);
+        if (root == null){
+            root = newNode;
         } else {
-            return existe(n.getDerecha(), busqueda);
-        }
+            Nodo padre = root;
+            Nodo parent;
+            while(true){
+                parent = padre;
+                if (Integer.parseInt(posGlobal) < Integer.parseInt(padre.posGlobal)){
+                    padre = padre.left;
+                    if (padre == null){
+                        parent.left = newNode;
+                        return;
+                    }
 
-    }*/
-
-    public void insertar(String dato) {
-        if (this.raiz == null) {
-            this.raiz = new Nodo(dato);
-        } else {
-            //this.insertar(this.raiz, dato);
-        }
-    }
-
-    /**private void insertar(Nodo padre, String dato) {
-        if (dato > padre.getDato()) {
-            if (padre.getDerecha() == null) {
-                padre.setDerecha(new Nodo(dato));
-            } else {
-                this.insertar(padre.getDerecha(), dato);
-            }
-        } else {
-            if (padre.getIzquierda() == null) {
-                padre.setIzquierda(new Nodo(dato));
-            } else {
-                this.insertar(padre.getIzquierda(), dato);
+                }
+                else{
+                    padre = padre.right;
+                    if(padre == null){
+                        parent.right = newNode;
+                        return;
+                    }
+                }
             }
         }
-    }*/
-    /**Recorridos del árbol*/
-    private void preorden(Nodo n) {
-        if (n != null) {
-            n.imprimirDato();
-            preorden(n.getIzquierda());
-            preorden(n.getDerecha());
+    }
+//    public Nodo findNodeAux(Nodo comp, String palabra){
+//        if (comp == null){
+//            return null;
+//        }
+//        if (Objects.equals(comp.ocurrencias.get(comp.ocurrencias.size()-1), palabra)){
+//            return comp;
+//        }
+//        Nodo res1 = findNodeAux(comp.left, palabra);
+//        if (Objects.equals(res1.ocurrencias.get(res1.ocurrencias.size()-1), palabra)){
+//            return res1;
+//        }
+//        Nodo res2 = findNodeAux(comp.right, palabra);
+//        return res2;
+//    }
+    public void findNode(String palabra) {
+        Nodo comp = root;
+       // System.out.println(findNodeAux(comp, palabra));
+    }
+    public void inOrder(Nodo node){
+        if (node == null) {
+            return;
         }
-    }
-
-    private void inorden(Nodo n) {
-        if (n != null) {
-            inorden(n.getIzquierda());
-            n.imprimirDato();
-            inorden(n.getDerecha());
-        }
-    }
-
-    private void postorden(Nodo n) {
-        if (n != null) {
-            postorden(n.getIzquierda());
-            postorden(n.getDerecha());
-            n.imprimirDato();
-        }
-    }
-
-    public void preorden() {
-        this.preorden(this.raiz);
-    }
-
-    public void inorden() {
-        this.inorden(this.raiz);
-    }
-
-    public void postorden() {
-        this.postorden(this.raiz);
+        inOrder(node.left);
+        System.out.printf("%s ", node.palabra);
+        inOrder(node.right); }
+    public void showRice(){
+        inOrder(root);
     }
 }

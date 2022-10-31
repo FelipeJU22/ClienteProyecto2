@@ -42,7 +42,7 @@ public class Inicio implements Initializable{
     private Stage stage;
     private File archivo;
     private String path;
-    private String direcciones = "";
+    static String direcciones = "";
     @FXML
     private TableView<Archivos> tabla;
     @FXML
