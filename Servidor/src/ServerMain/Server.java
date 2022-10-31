@@ -182,9 +182,6 @@ public class Server {
                             System.out.println("Eliminar archivo árbol binario");
                         }
                         if(mensaje[0].equals("4")){
-                            System.out.println("Eliminar todo el proyecto");
-                        }
-                        if(mensaje[0].equals("5")){
                             System.out.println("Enviar archivos para abrir");
                         }
                     } catch (IOException e) {
