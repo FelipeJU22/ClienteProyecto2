@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.ServerSocket;
-
+/**
+ * Clase que sirve para inicializar el servidor.
+ */
 public class ServerApp extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -17,7 +19,9 @@ public class ServerApp extends Application {
         stage.show();
     }
 
-
+    /**
+     * Método que crea el servidor.
+     */
     public static void main(String[] args) {
         try{
             Server server = new Server(new ServerSocket(1234));

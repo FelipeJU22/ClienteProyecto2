@@ -1,6 +1,11 @@
 package ClientMain;
-
+/**
+ * Clase archivos, utilizada para poder guardar, con información util, los archivos para su debido evío al servidor
+ */
 public class Archivos {
+    /**
+     * Método constructor
+     */
     public Archivos(String nombre, String fechaCreacion, int cantPal, String direccion) {
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;

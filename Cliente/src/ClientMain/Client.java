@@ -14,7 +14,9 @@ import ListaDoblementeEnlazadaCircular4k.LinkedList;
 import com.sun.tools.javac.Main;
 
 import ClientMain.MainController;
-
+/**
+ * Clase Cliente, utilizada para enviar los archivos al servidor, y buscar imagenes. Esta los recibe y los muestra en pantalla
+ */
 public class Client {
     private Socket socket;
     private BufferedReader readerC;
@@ -23,6 +25,9 @@ public class Client {
     private MainController controller = new MainController();
     private String frase = "";
     private LinkedList listaenlazada = new LinkedList();
+    /**
+     * Método socket, encagada de hacer la conección con los sockets
+     */
     public Client(Socket socket) {
         try {
             this.socket = socket;
@@ -32,6 +37,9 @@ public class Client {
             System.out.println("Error creando el cliente");
         }
     }
+    /**
+     * Método utilizada para enviar mensajes al servidor
+     */
     public void enviarMsjServidor(String clientMessage) {
         try {
             writerC.write(clientMessage);
@@ -42,7 +50,9 @@ public class Client {
         }
     }
 
-
+    /**
+     * Método que recibe y procesa los mensajes del servidor para mostrarlos en pantalla
+     */
     public void recibirMsjServidor() {
         new Thread(new Runnable() {
             @Override
@@ -75,12 +85,19 @@ public class Client {
             }
         }).start();
     }
+    /**
+     * Método utilizada, para mostraren pantalla el elemento siguiente de la lista doblemente enlazada circular ssj2
+     */
     public void pasar(){
         listaenlazada.adelanteCurrent();
         controller.recibirFrase(listaenlazada.current.getPalabra(),String.valueOf(listaNodos.size()));
         controller.cambiarLab(listaenlazada.current.pos);
         controller.obtenerPath(listaenlazada.current.path);
     }
+    /**
+     * Método utilizada, para mostraren pantalla el elemento anterior de la lista doblemente enlazada circular ssj2, la
+     * contiene los resultados de busqueda de los archivos.
+     */
     public void anterior(){
         listaenlazada.atrasCurrent();
         controller.recibirFrase(listaenlazada.current.getPalabra(),String.valueOf(listaNodos.size()));

@@ -13,7 +13,9 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
-
+/**
+ * Clase que inicializa el código, enviando a la ventana "inicio" como ventana principal.
+ */
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {

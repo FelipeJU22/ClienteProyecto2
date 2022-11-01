@@ -14,7 +14,10 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**
+ * Clase del controlador de la ventana de búsqueda, en esta se buscan palabras, se añaden y eliminan documentos, y se visualizan los
+ * resultados de la busqueda de palabras.
+ */
 public class MainController implements Initializable {
 
     @FXML
@@ -38,6 +41,10 @@ public class MainController implements Initializable {
     public static String direccion = "";
     private static String paths;
     FileChooser seleccionador = new FileChooser();
+    /**
+     * Método que inicializa la ventana, en esta se inicializa la conección con el servidor y se le envían los paths de los
+     * documentos guardados.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources){
         try{
@@ -72,40 +79,64 @@ public class MainController implements Initializable {
             }
         });
     }
-
+    /**
+     * Método el cual recibe los paths
+     */
     static void recibirPaths(String path){
         paths = path;
         System.out.println(paths);
     }
-
+    /**
+     * Método que setea como stage principal la ventana del buscador
+     */
     public void init(Stage stage, Inicio inicio) {
         //stage.getIcons().add(new Image("C:\\Users\\Yoshant\\Documents\\Felipe\\TEC\\2do Semestre\\Algoritmos y Estructuras de Datos I\\Proyecto 2\\Cliente\\src\\Imágenes\\icono.PNG"));
         this.controladorInicio = inicio;
         this.stage = stage;
     }
-
+    /**
+     * Método que recibe los resultados de busqueda del servidor
+     */
     public void recibirFrase(String frase, String palabras) {
         MainController.total = palabras;
         MainController.mensaje = frase;
         System.out.println(mensaje);
 
     }
+    /**
+     * Método que coloca los resultados en pantalla
+     */
     public void colocar(ActionEvent event){
         textA.setText(mensaje);
         posicion.setText(pos + " de " + total);
     }
+    /**
+     * Método que pasa de resultado al siguiente
+     */
     public void pasarPal(ActionEvent event){
         client.pasar();
     }
+    /**
+     * Método que pasa de resultado al anterior
+     */
     public void antPal(ActionEvent event){
         client.anterior();
     }
+    /**
+     * Método que pasa de resultado al siguiente y lo muestra como un numero
+     */
     public void cambiarLab(int posi){
         MainController.pos = String.valueOf(posi);
     }
+    /**
+     * Método que obtiene el path del archivo
+     */
     public void obtenerPath(String link){
         MainController.direccion = link;
     }
+    /**
+     * Método que muestra el path de un archivo.
+     */
     public void getPath(ActionEvent event){
         System.out.println(direccion);
     }

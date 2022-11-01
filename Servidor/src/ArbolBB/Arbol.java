@@ -9,7 +9,9 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
-
+/**
+ * Clase del árbol binario de busqueda.
+ */
 public class Arbol{
     //atributos
     public Nodo root;
@@ -19,6 +21,9 @@ public class Arbol{
 
 
     //metodos
+    /**
+     * Método que añade nodos al árbol binario de busqeuda
+     */
     public void addNode(String palabra, String documento, String posGlobal, String posLocal){
         Nodo newNode = new Nodo(palabra, documento, posGlobal, posLocal);
         if (root == null){
@@ -46,6 +51,9 @@ public class Arbol{
             }
         }
     }
+    /**
+     * Método auxiliar que nos busca un nodo en especifico, comparandolo con la palabra almacenada en este.
+     */
     public String findNodeAux(Nodo comp, String palabra){
         if (comp == null) {
             return "nop";
@@ -76,13 +84,18 @@ public class Arbol{
         findNodeAux(comp.right, palabra);
         return "was";
     }
-
+    /**
+     * Método que llama al método auxiliar de busqueda
+     */
     public String findNode(String palabra) {
         Nodo comp = root;
         findNodeAux(comp, palabra);
        // System.out.println(findNodeAux(comp, palabra));
         return mensaje;
     }
+    /**
+     * Método que busca en el árbol binario de la forma inorden
+     */
     public void inOrder(Nodo node){
         if (node == null) {
             return;
@@ -90,6 +103,9 @@ public class Arbol{
         inOrder(node.left);
         System.out.printf("%s ", node.palabra);
         inOrder(node.right); }
+    /**
+     * Método que muestra un nodo con sus caracteristicas.
+     */
     public void showRice(){
         inOrder(root);
     }

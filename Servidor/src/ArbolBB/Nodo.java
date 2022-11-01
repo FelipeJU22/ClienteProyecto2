@@ -1,7 +1,9 @@
 package ArbolBB;
 
 import java.util.ArrayList;
-
+/**
+ * Clase Nodo, el cual recibe los resultados de parsear el documento, y los guarda en el árbol binario
+ */
 public class Nodo {
 
     //atributos
@@ -13,6 +15,9 @@ public class Nodo {
     public Nodo right;
 
     //metodos
+    /**
+     * Método constructor
+     */
     public Nodo(String palabra, String documento, String posGlobal, String posLocal) {
         this.palabra = palabra;
         this.documento = documento;

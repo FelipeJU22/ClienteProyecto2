@@ -13,7 +13,9 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-
+/**
+ * Clase principal, la cual hace toda la conección, matematica, parseo, busqueda y envío de resultados.
+ */
 public class Server {
     private ServerSocket serverSocket;
     private Socket socket;
@@ -26,7 +28,9 @@ public class Server {
     private String[] arboles = new String[0];
     public Arbol arbol = new Arbol();
     static String lista = "";
-
+    /**
+     * Método que inicializa el servidor, por lo tanto, las conecciones con el cliente.
+     */
     public Server(ServerSocket serverSocket) {
         try {
             this.serverSocket = serverSocket;
@@ -37,7 +41,9 @@ public class Server {
             System.out.println("Error conectando con el servidor");
         }
     }
-
+    /**
+     * Método que envía mensajes al cliente
+     */
     public void enviarMsjClient(String serverMessage) {
         try {
             writerS.write(serverMessage);
@@ -47,7 +53,9 @@ public class Server {
             System.out.println("Error enviando el mensaje");
         }
     }
-
+    /**
+     * Método que recibe y procesa los mensajes del cliente. Medio código literal.
+     */
     public void recibirMsjClient() {
         new Thread(new Runnable() {
             @Override
@@ -200,6 +208,9 @@ public class Server {
             }
         }).start();
     }
+    /**
+     * Método que recibe los resultados de busqueda del árbol binario.
+     */
     public void enviarLista(String lista){
         arbol.recibirLista(lista);
     }

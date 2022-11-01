@@ -36,7 +36,9 @@ import java.util.Scanner;
 
 
 import static ClientMain.MainController.recibirPaths;
-
+/**
+ * Clase "offline", utilizada para poder cargar los documentos a utilizar en el proyecto.
+ */
 public class Inicio implements Initializable{
 
     private Stage stage;
@@ -59,6 +61,9 @@ public class Inicio implements Initializable{
     private List fechas = new ArrayList();
     private List palabras = new ArrayList();
     FileChooser seleccionador = new FileChooser();
+    /**
+     * Método utilizada para seleccionar los archivos, y mostrar en pantalla las caracteristicas principales de este
+     */
     public void seleccionar(ActionEvent event) throws FileNotFoundException {
         lista = FXCollections.observableArrayList();
         archivo = seleccionador.showOpenDialog(new Stage());
@@ -162,11 +167,17 @@ public class Inicio implements Initializable{
         this.tabla.setItems(lista);
         crearDirecciones(path);
     }
+    /**
+     * Método utilizada, para crear el mensaje a enciar al servidor, el cual contiene los paths de los documentos.
+     */
     public String crearDirecciones(String path){
         direcciones += path + " LeoEsDios ";
         System.out.println(direcciones);
         return direcciones;
     }
+    /**
+     * Método utilizada para poder pasar de la ventana inicio, a la ventana principal, la cuál conecta con el servidor
+     */
     public void pasar(ActionEvent event) throws IOException {
         enviarPaths(direcciones);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("cliente.fxml"));
@@ -179,13 +190,22 @@ public class Inicio implements Initializable{
         stage.show();
         this.stage.close();
     }
+    /**
+     * Método que envía  los paths a la ventana principal
+     */
     public void enviarPaths(String path){
         recibirPaths(path);
     }
+    /**
+     * Método que setea la ventana inicio como principal
+     */
     public void setStage(Stage primaryStage){
         stage = primaryStage;
     }
 
+    /**
+     * Método que inicializa el programa
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
