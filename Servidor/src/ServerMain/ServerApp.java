@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.net.ServerSocket;
 
 public class ServerApp extends Application {
     @Override
@@ -17,7 +17,14 @@ public class ServerApp extends Application {
         stage.show();
     }
 
+
     public static void main(String[] args) {
-        launch();
+        try{
+            Server server = new Server(new ServerSocket(1234));
+            server.recibirMsjClient();
+        }
+        catch (IOException e) {
+            System.out.println("Error al crear servidor");
+        }
     }
 }

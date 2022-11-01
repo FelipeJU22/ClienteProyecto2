@@ -1,12 +1,21 @@
 package ArbolBB;
 
-import java.util.ArrayList;
+import ServerMain.Server;
+import javafx.fxml.Initializable;
+
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.URL;
+import java.util.Arrays;
 import java.util.Objects;
-import java.util.Stack;
+import java.util.ResourceBundle;
 
 public class Arbol{
     //atributos
     public Nodo root;
+    public String[] listaRec = new String[0];
+    public Server server;
+    public String mensaje = "";
 
 
     //metodos
@@ -37,23 +46,42 @@ public class Arbol{
             }
         }
     }
-//    public Nodo findNodeAux(Nodo comp, String palabra){
-//        if (comp == null){
-//            return null;
-//        }
-//        if (Objects.equals(comp.ocurrencias.get(comp.ocurrencias.size()-1), palabra)){
-//            return comp;
-//        }
-//        Nodo res1 = findNodeAux(comp.left, palabra);
-//        if (Objects.equals(res1.ocurrencias.get(res1.ocurrencias.size()-1), palabra)){
-//            return res1;
-//        }
-//        Nodo res2 = findNodeAux(comp.right, palabra);
-//        return res2;
-//    }
-    public void findNode(String palabra) {
+    public String findNodeAux(Nodo comp, String palabra){
+        if (comp == null) {
+            return "nop";
+        }
+        if (Objects.equals(comp.palabra, palabra)){
+            if(Integer.parseInt(comp.posLocal)==1){
+                System.out.print(comp.palabra + listaRec[Integer.parseInt(comp.posGlobal)] + listaRec[Integer.parseInt(comp.posGlobal)+1]);
+
+                findNodeAux(comp.right, palabra);
+                return mensaje += comp.palabra + listaRec[Integer.parseInt(comp.posGlobal)] + listaRec[Integer.parseInt(comp.posGlobal)+1]+
+                        " @@@ " +comp.documento + " @@@ " + comp.posGlobal + " @@@ " +comp.posLocal +" Yacasi ";
+            }
+            if(Integer.parseInt(comp.posGlobal) == listaRec.length){
+                System.out.print(listaRec[Integer.parseInt(comp.posGlobal)-3] + " "  + listaRec[Integer.parseInt(comp.posGlobal)-2] + " " + comp.palabra);
+
+                findNodeAux(comp.right, palabra);
+                return mensaje += listaRec[Integer.parseInt(comp.posGlobal)-3] + " "  + listaRec[Integer.parseInt(comp.posGlobal)-2] + " " + comp.palabra+
+                        " @@@" +comp.documento + " @@@ " + comp.posGlobal + " @@@ " +comp.posLocal +" Yacasi ";
+            }
+            else{
+                System.out.print(listaRec[Integer.parseInt(comp.posGlobal)-2] + " " + comp.palabra + listaRec[Integer.parseInt(comp.posGlobal)]);
+
+                findNodeAux(comp.right, palabra);
+                return mensaje += listaRec[Integer.parseInt(comp.posGlobal)-2] + " " + comp.palabra + listaRec[Integer.parseInt(comp.posGlobal)]+
+                        " @@@ " +comp.documento + " @@@ " + comp.posGlobal + " @@@ " +comp.posLocal +" Yacasi ";
+            }
+        }
+        findNodeAux(comp.right, palabra);
+        return "was";
+    }
+
+    public String findNode(String palabra) {
         Nodo comp = root;
+        findNodeAux(comp, palabra);
        // System.out.println(findNodeAux(comp, palabra));
+        return mensaje;
     }
     public void inOrder(Nodo node){
         if (node == null) {
@@ -65,4 +93,11 @@ public class Arbol{
     public void showRice(){
         inOrder(root);
     }
+    public String[] recibirLista(String lista){
+        String lista1 = lista.replace("[","").replace("]","");
+        listaRec = lista1.split(",");
+        return listaRec;
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package ServerMain;
 
+import ArbolBB.Arbol;
+import ArbolBB.Nodo;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -22,6 +24,8 @@ public class Server {
     private List listaParseada = new ArrayList();
     private List listaStrings = new ArrayList();
     private String[] arboles = new String[0];
+    public Arbol arbol = new Arbol();
+    static String lista = "";
 
     public Server(ServerSocket serverSocket) {
         try {
@@ -74,10 +78,11 @@ public class Server {
                                         String Docx = "";
                                         for (int j = 0; j < divididoDocx.length; j++) {
                                             String elemento = divididoDocx[j];
-                                            if (!elemento.equals(" ")) {
-                                                finalDocx.add(divididoDocx[j]);
-                                                String Docxtemp = finalDocx.toString().replace("[", "");
-                                                Docx = Docxtemp.replace("]", "");
+                                            if (!elemento.equals(" ")){
+                                                if(!elemento.equals(""))
+                                                    finalDocx.add(divididoDocx[j]);
+                                                    String Docxtemp = finalDocx.toString().replace("[", "");
+                                                    Docx = Docxtemp.replace("]", "");
                                             }
                                         }
                                         int tamano1 = divididoDocx.length - 1;
@@ -141,11 +146,10 @@ public class Server {
                             System.out.println(Arrays.toString(arboles)+ "    ARBOLES");
                             String[] listafinalsiosi = new String[4];
                             int numero = 1;
-                            System.out.println("LLEGÓ HASTA AQUÍ ALELUYA");
                             for(int x = 0; x < superLista.size(); x++){
                                 int prueba = 1;
                                 String[] lista = superLista.get(x).toString().replace("[","").replace("]","").split(",");
-                                //System.out.println(Arrays.toString(lista)+"    LISTA");
+                                System.out.println(Arrays.toString(lista)+"    LISTA");
                                 for(int y = 0; y < lista.length; y++){
                                     for(int z = 0; z < listaStrings.size(); z++){
                                         if((listaStrings.get(z)).equals(lista[y]) || (" "+listaStrings.get(z)).equals(lista[y])){
@@ -161,8 +165,14 @@ public class Server {
                                     }
                                 }
                             }
-                            System.out.println(listaParseada);
-
+                            //System.out.println(listaParseada);
+                            enviarLista(listaStrings.toString());
+                            for(int k = 0; k < listaParseada.size(); k++){
+                                //System.out.println(listaParseada.get(k));
+                                String[] listaNodos = listaParseada.get(k).toString().replace("[","").replace("]","").split(",");
+                                Nodo doc = new Nodo(listaNodos[0],listaNodos[1],listaNodos[2].replace(" ", ""),listaNodos[3].replace(" ", ""));
+                                arbol.addNode(listaNodos[0],listaNodos[1],listaNodos[2].replace(" ", ""),listaNodos[3].replace(" ", ""));
+                            }
 
                             /** Aquí se crea el arbol de fish*/
 
@@ -172,18 +182,16 @@ public class Server {
                             listaParseada.clear();
                         }
                         if(mensaje[0].equals("1")){
-                            System.out.println("Buscar: " + mensaje[1]);
+                            enviarMsjClient( "0"+"PPP"+arbol.findNode(mensaje[1]));
                         }
                         if(mensaje[0].equals("2")){
                             System.out.println("Añadir: " + mensaje[1]);
-                            //borrararbol()
+
                         }
                         if(mensaje[0].equals("3")){
-                            System.out.println("Eliminar archivo árbol binario");
-                        }
-                        if(mensaje[0].equals("4")){
                             System.out.println("Enviar archivos para abrir");
                         }
+
                     } catch (IOException e) {
                         System.out.println("Error recibiendo mensaje");
                         break;
@@ -191,5 +199,8 @@ public class Server {
                 }
             }
         }).start();
+    }
+    public void enviarLista(String lista){
+        arbol.recibirLista(lista);
     }
 }

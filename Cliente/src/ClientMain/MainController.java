@@ -1,13 +1,12 @@
 package ClientMain;
 
+import ListaDoblementeEnlazadaCircular4k.LinkedList;
+import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
@@ -22,13 +21,21 @@ public class MainController implements Initializable {
     private Button boton1, botonPalabra, botonAñadir;
     @FXML
     private TextField texto;
-
+    @FXML
+    private TextArea textA;
+    @FXML
+    private Label posicion;
     private Inicio controladorInicio;
     private Stage stage;
     private File archivo;
     private String path;
     private Client client;
+    private LinkedList linkedList;
     private Inicio inicio;
+    public static String mensaje = "";
+    public static String pos = "";
+    public static String total = "";
+    public static String direccion = "";
     private static String paths;
     FileChooser seleccionador = new FileChooser();
     @Override
@@ -75,5 +82,31 @@ public class MainController implements Initializable {
         //stage.getIcons().add(new Image("C:\\Users\\Yoshant\\Documents\\Felipe\\TEC\\2do Semestre\\Algoritmos y Estructuras de Datos I\\Proyecto 2\\Cliente\\src\\Imágenes\\icono.PNG"));
         this.controladorInicio = inicio;
         this.stage = stage;
+    }
+
+    public void recibirFrase(String frase, String palabras) {
+        MainController.total = palabras;
+        MainController.mensaje = frase;
+        System.out.println(mensaje);
+
+    }
+    public void colocar(ActionEvent event){
+        textA.setText(mensaje);
+        posicion.setText(pos + " de " + total);
+    }
+    public void pasarPal(ActionEvent event){
+        client.pasar();
+    }
+    public void antPal(ActionEvent event){
+        client.anterior();
+    }
+    public void cambiarLab(int posi){
+        MainController.pos = String.valueOf(posi);
+    }
+    public void obtenerPath(String link){
+        MainController.direccion = link;
+    }
+    public void getPath(ActionEvent event){
+        System.out.println(direccion);
     }
 }
