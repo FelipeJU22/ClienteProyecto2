@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cd5747a0-fc8c-49da-ab2e-6310c148f651" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Cliente/Cliente.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Cliente/Cliente.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/out/production/Cliente/main/cliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Cliente/out/production/Cliente/main/cliente.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/out/production/Cliente/main/inicio.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Cliente/out/production/Cliente/main/inicio.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/src/main/Client.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/src/main/Inicio.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/src/main/MainApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/src/main/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/src/main/cliente.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/src/main/inicio.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cliente/src/main/prueba.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/Servidor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Servidor/Servidor.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/out/production/Servidor/main/servidor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Servidor/out/production/Servidor/main/servidor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/src/main/MainApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/src/main/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/src/main/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Servidor/src/main/servidor.fxml" beforeDir="false" />
-    </list>
+    <list default="true" id="cd5747a0-fc8c-49da-ab2e-6310c148f651" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,6 +94,7 @@
       <workItem from="1666562823547" duration="819000" />
       <workItem from="1666563690861" duration="56000" />
       <workItem from="1666563760202" duration="19000" />
+      <workItem from="1667371755268" duration="71000" />
     </task>
     <servers />
   </component>

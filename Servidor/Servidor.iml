@@ -7,9 +7,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="poi-ooxml-3.15" level="project" />
+    <orderEntry type="library" name="pdfbox-3.0.0-alpha3" level="project" />
+    <orderEntry type="library" name="poi-scratchpad-3.15" level="project" />
     <orderEntry type="library" name="xmlbeans-2.6.0" level="project" />
-    <orderEntry type="library" name="lombok" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>
