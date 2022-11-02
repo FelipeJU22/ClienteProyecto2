@@ -48,5 +48,25 @@
             <TableColumn fx:id="cantidad" prefWidth="146.0" text="Cantidad de palabras" />
         </columns>
       </TableView>
+      <Button fx:id="quick" layoutX="694.0" layoutY="224.0" mnemonicParsing="false" onAction="#ordenarQuick" style="-fx-background-color: #E8E0E0;" text="Nombre" textFill="#3c1111">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="682.0" layoutY="182.0" text="Ordenar por:" textFill="#3c1111">
+         <font>
+            <Font name="Courier New" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="bubble" layoutX="699.0" layoutY="286.0" mnemonicParsing="false" onAction="#ordenarBubble" style="-fx-background-color: #E8E0E0;" text="Fecha" textFill="#3c1111">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="radix" layoutX="691.0" layoutY="347.0" mnemonicParsing="false" onAction="#ordenarRadix" style="-fx-background-color: #E8E0E0;" text="Palabras" textFill="#3c1111">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

@@ -18,6 +18,7 @@ public class Arbol{
     public String[] listaRec = new String[0];
     public Server server;
     public String mensaje = "";
+    public static int cont;
 
 
     //metodos
@@ -55,33 +56,33 @@ public class Arbol{
      * Método auxiliar que nos busca un nodo en especifico, comparandolo con la palabra almacenada en este.
      */
     public String findNodeAux(Nodo comp, String palabra){
+        mensaje = "";
         if (comp == null) {
             return "nop";
         }
         if (Objects.equals(comp.palabra, palabra)){
             if(Integer.parseInt(comp.posLocal)==1){
                 System.out.print(comp.palabra + listaRec[Integer.parseInt(comp.posGlobal)] + listaRec[Integer.parseInt(comp.posGlobal)+1]);
-
                 findNodeAux(comp.right, palabra);
                 return mensaje += comp.palabra + listaRec[Integer.parseInt(comp.posGlobal)] + listaRec[Integer.parseInt(comp.posGlobal)+1]+
                         " @@@ " +comp.documento + " @@@ " + comp.posGlobal + " @@@ " +comp.posLocal +" Yacasi ";
             }
             if(Integer.parseInt(comp.posGlobal) == listaRec.length){
                 System.out.print(listaRec[Integer.parseInt(comp.posGlobal)-3] + " "  + listaRec[Integer.parseInt(comp.posGlobal)-2] + " " + comp.palabra);
-
                 findNodeAux(comp.right, palabra);
                 return mensaje += listaRec[Integer.parseInt(comp.posGlobal)-3] + " "  + listaRec[Integer.parseInt(comp.posGlobal)-2] + " " + comp.palabra+
                         " @@@" +comp.documento + " @@@ " + comp.posGlobal + " @@@ " +comp.posLocal +" Yacasi ";
             }
             else{
                 System.out.print(listaRec[Integer.parseInt(comp.posGlobal)-2] + " " + comp.palabra + listaRec[Integer.parseInt(comp.posGlobal)]);
-
                 findNodeAux(comp.right, palabra);
                 return mensaje += listaRec[Integer.parseInt(comp.posGlobal)-2] + " " + comp.palabra + listaRec[Integer.parseInt(comp.posGlobal)]+
                         " @@@ " +comp.documento + " @@@ " + comp.posGlobal + " @@@ " +comp.posLocal +" Yacasi ";
             }
         }
+        cont++;
         findNodeAux(comp.right, palabra);
+
         return "was";
     }
     /**
@@ -91,7 +92,7 @@ public class Arbol{
         Nodo comp = root;
         findNodeAux(comp, palabra);
        // System.out.println(findNodeAux(comp, palabra));
-        return mensaje;
+        return mensaje + "PPP" + cont;
     }
     /**
      * Método que busca en el árbol binario de la forma inorden

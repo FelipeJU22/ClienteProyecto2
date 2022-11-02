@@ -1,5 +1,6 @@
 package ServerMain;
 
+
 import ArbolBB.Arbol;
 import ArbolBB.Nodo;
 import org.apache.pdfbox.Loader;
@@ -8,7 +9,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 
-import javax.management.StringValueExp;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -82,7 +82,7 @@ public class Server {
                                         for (XWPFParagraph paragraph : parrafo) {
                                             textoFullDocx = textoFullDocx + " " + paragraph.getText();
                                         }
-                                        String[] divididoDocx = textoFullDocx.split(" ");
+                                        String[] divididoDocx = textoFullDocx.split("[ \n\t\r,.;:!?(){}]");
                                         String Docx = "";
                                         for (int j = 0; j < divididoDocx.length; j++) {
                                             String elemento = divididoDocx[j];
@@ -149,6 +149,10 @@ public class Server {
                                 }
                                 //
                             }
+                            for(int i = 0; i < listaStrings.size(); i++) {
+                                listaStrings.remove("");
+                            }
+
                             System.out.println(superLista + "       SUPERLISTA");
                             System.out.println(listaStrings + "    STRINGS");
                             System.out.println(Arrays.toString(arboles)+ "    ARBOLES");
@@ -180,7 +184,7 @@ public class Server {
                                 String[] listaNodos = listaParseada.get(k).toString().replace("[","").replace("]","").split(",");
                                 Nodo doc = new Nodo(listaNodos[0],listaNodos[1],listaNodos[2].replace(" ", ""),listaNodos[3].replace(" ", ""));
                                 arbol.addNode(listaNodos[0],listaNodos[1],listaNodos[2].replace(" ", ""),listaNodos[3].replace(" ", ""));
-                            }
+                              }
 
                             /** Aquí se crea el arbol de fish*/
 
@@ -191,15 +195,8 @@ public class Server {
                         }
                         if(mensaje[0].equals("1")){
                             enviarMsjClient( "0"+"PPP"+arbol.findNode(mensaje[1]));
-                        }
-                        if(mensaje[0].equals("2")){
-                            System.out.println("Añadir: " + mensaje[1]);
 
                         }
-                        if(mensaje[0].equals("3")){
-                            System.out.println("Enviar archivos para abrir");
-                        }
-
                     } catch (IOException e) {
                         System.out.println("Error recibiendo mensaje");
                         break;

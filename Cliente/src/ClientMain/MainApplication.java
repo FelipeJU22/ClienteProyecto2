@@ -34,15 +34,6 @@ public class MainApplication extends Application {
         launch();
     }
 }
-/**enviar:
- "path"
- "crearArbolBB()"
- recibidor = "path"
- a = "path"
- recibidor = "crearArbolBB()"
- if(recibidor.equals("crearArbolBB()")){
- crearArbolBB(a)
- }*/
 
 
 

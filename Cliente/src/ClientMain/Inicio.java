@@ -3,18 +3,19 @@ package ClientMain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.awt.*;
 import java.util.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.shape.Arc;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.pdfbox.Loader;
@@ -23,7 +24,6 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import java.util.Calendar;
-import javax.management.StringValueExp;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -36,6 +36,10 @@ import java.util.Scanner;
 
 
 import static ClientMain.MainController.recibirPaths;
+import static ClientMain.Ordenamiento.Quick_Nombre.quicksort;
+import static ClientMain.Ordenamiento.BubbleSort.bubbleSort;
+import static ClientMain.Ordenamiento.RadixSort.radixSort;
+
 /**
  * Clase "offline", utilizada para poder cargar los documentos a utilizar en el proyecto.
  */
@@ -61,6 +65,10 @@ public class Inicio implements Initializable{
     private List fechas = new ArrayList();
     private List palabras = new ArrayList();
     FileChooser seleccionador = new FileChooser();
+    private static String[] listaPaths = {};
+    private static String[] listaNombre = {};
+    private static int[] listaPal = {};
+    private static String[] listaFecha = {};
     /**
      * Método utilizada para seleccionar los archivos, y mostrar en pantalla las caracteristicas principales de este
      */
@@ -113,7 +121,7 @@ public class Inicio implements Initializable{
             }
 
         }
-        if(tipo.equals("pdf")){
+        else if(tipo.equals("pdf")){
              try {
                  File file = new File(path);
                  PDDocument document = Loader.loadPDF(file);
@@ -134,7 +142,7 @@ public class Inicio implements Initializable{
              }
 
         }
-        if(tipo.equals("txt")){
+        else if(tipo.equals("txt")){
              File file = new File(path);
              Scanner scan = new Scanner(file);
              String textoFulltxt= "";
@@ -152,19 +160,40 @@ public class Inicio implements Initializable{
              int tamano3 = finalTXT.size();
              palabras.add(tamano3);
              }
+        else{
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Error");
+            alerta.setContentText("Tipo de archivo incorrecto");
+            alerta.showAndWait();
+
+        }
         //
 
         paths.add(path);
 
-
+        String[] listaNombres = new String[nombres.size()];
+        String[] listaFechas = new String[nombres.size()];
+        int[] listaPalabras = new int[nombres.size()];
+        String[] list = new String[nombres.size()];
         for(int i = 0; i < nombres.size(); i++){
-            lista.add(new Archivos(nombres.get(i).toString(), fechas.get(i).toString(),Integer.parseInt(palabras.get(i).toString()),""));
+            lista.add(new Archivos(nombres.get(i).toString(), fechas.get(i).toString(),Integer.parseInt(palabras.get(i).toString()),paths.get(i).toString()));
+            listaNombres[i] = lista.get(i).getNombre();
+            listaFechas[i] = lista.get(i).getFechaCreacion();
+            listaPalabras[i] = lista.get(i).getCantPal();
+            list[i] = lista.get(i).getDireccion();
         }
+        listaNombre = listaNombres;
+        listaPal = listaPalabras;
+        listaFecha = listaFechas;
+        listaPaths = list;
         this.nombreArch.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.fecha.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
         this.cantidad.setCellValueFactory(new PropertyValueFactory<>("cantPal"));
 
         this.tabla.setItems(lista);
+
+
+
         crearDirecciones(path);
     }
     /**
@@ -208,6 +237,52 @@ public class Inicio implements Initializable{
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+    public void ordenarQuick(ActionEvent event) {
+        lista.clear();
+        String[] listaaa = listaNombre;
+
+        quicksort(listaaa, 0, listaaa.length-1);
+        for(int i = 0; i < listaaa.length; i++){
+            lista.add(new Archivos(listaaa[i], listaFecha[i], listaPal[i], listaPaths[i]));
+        }
+        this.nombreArch.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.fecha.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
+        this.cantidad.setCellValueFactory(new PropertyValueFactory<>("cantPal"));
+        this.tabla.setItems(lista);
+    }
+    public void ordenarBubble(ActionEvent event){
+        lista.clear();
+        int[] milisegundos = new int[listaFecha.length];
+        for(int i = 0; i < listaFecha.length; i++){
+            milisegundos [i]= Integer.parseInt(listaFecha[i].replace("/",""));
+        }
+        bubbleSort(milisegundos);
+        String[] tiempo = new String[milisegundos.length];
+        for(int i = 0; i < milisegundos.length; i++){
+            tiempo[i] = String.valueOf(milisegundos[i]);
+        }
+        for(int i = 0; i < milisegundos.length; i++){
+            lista.add(new Archivos(listaNombre[i], tiempo[i], listaPal[i], listaPaths[i]));
+        }
+        this.nombreArch.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.fecha.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
+        this.cantidad.setCellValueFactory(new PropertyValueFactory<>("cantPal"));
+        this.tabla.setItems(lista);
+
+    }
+    public void ordenarRadix(ActionEvent event){
+        lista.clear();
+        int[] radixList = listaPal;
+        radixSort(radixList, radixList.length);
+        for(int i = 0; i < radixList.length; i++){
+            lista.add(new Archivos(listaNombre[i], listaFecha[i], radixList[i], listaPaths[i]));
+        }
+        this.nombreArch.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.fecha.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
+        this.cantidad.setCellValueFactory(new PropertyValueFactory<>("cantPal"));
+        this.tabla.setItems(lista);
+
     }
 }
 

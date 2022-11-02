@@ -1,14 +1,21 @@
 package ClientMain;
 
 import ListaDoblementeEnlazadaCircular4k.LinkedList;
+import ListaDoblementeEnlazadaCircular4k.Nodos;
 import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
@@ -21,24 +28,31 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
 
     @FXML
-    private Button boton1, botonPalabra, botonAñadir;
+    private Button boton1, botonPalabra, botonAñadir, botonEliminar;
     @FXML
     private TextField texto;
     @FXML
     private TextArea textA;
     @FXML
     private Label posicion;
+    @FXML
+    private Label pal1;
+    @FXML
+    private Label pal2;
+    @FXML
+    private Label pal3;
     private Inicio controladorInicio;
     private Stage stage;
     private File archivo;
     private String path;
     private Client client;
-    private LinkedList linkedList;
+    private LinkedList linkedList = new LinkedList();
     private Inicio inicio;
     public static String mensaje = "";
     public static String pos = "";
     public static String total = "";
     public static String direccion = "";
+    public static int iteracionesBB = 0;
     private static String paths;
     FileChooser seleccionador = new FileChooser();
     /**
@@ -78,6 +92,16 @@ public class MainController implements Initializable {
                 System.out.println(paths);
             }
         });
+        botonEliminar.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Iteraciones en ambos árboles");
+                alerta.setContentText("Iteraciones para el árbol binario: " + iteracionesBB + "\n" + "Iteraciones para el árbol AVL: " + "Perdón profe :c");
+                alerta.showAndWait();
+            }
+        });
+
     }
     /**
      * Método el cual recibe los paths
@@ -107,6 +131,18 @@ public class MainController implements Initializable {
      * Método que coloca los resultados en pantalla
      */
     public void colocar(ActionEvent event){
+        System.out.println(mensaje);
+        String[] separado = mensaje.split(" ");
+        if(separado.length==4) {
+            pal1.setText(separado[1]);
+            pal2.setText(separado[2]);
+            pal3.setText(separado[3]);
+        }
+        else{
+            pal1.setText("");
+            pal2.setText(separado[0]);
+            pal3.setText(separado[1]);
+        }
         textA.setText(mensaje);
         posicion.setText(pos + " de " + total);
     }
@@ -137,7 +173,11 @@ public class MainController implements Initializable {
     /**
      * Método que muestra el path de un archivo.
      */
-    public void getPath(ActionEvent event){
-        System.out.println(direccion);
+    public void getPath(ActionEvent event) throws IOException {
+        File objetoFile = new File(direccion.replace(" ",""));
+        Desktop.getDesktop().open(objetoFile);
+    }
+    public void getIteracionesBB(int cont){
+        MainController.iteracionesBB = cont;
     }
 }

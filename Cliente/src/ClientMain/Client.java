@@ -59,6 +59,7 @@ public class Client {
             public void run() {
                 while (socket.isConnected()) {
                     try {
+                        String[] lista = new String[0];
                         String messagefromServer = readerC.readLine();
                         System.out.println(messagefromServer);
                         String[] mensaje1 = messagefromServer.split("PPP");
@@ -68,7 +69,7 @@ public class Client {
                         }
                         System.out.println(listaNodos);
                         for(int i = 0; i < listaNodos.size(); i++){
-                            String[] lista = listaNodos.get(i).toString().replace("[","").replace("]","").split(",");
+                            lista = listaNodos.get(i).toString().replace("[","").replace("]","").split(",");
                             Nodos palabra = new Nodos(lista[0],lista[1],lista[2],lista[3], i+1);
                             listaenlazada.añadir(lista[0],lista[1],lista[2],lista[3],i+1);
                         }
@@ -77,6 +78,7 @@ public class Client {
                             controller.cambiarLab(listaenlazada.current.pos);
                             controller.obtenerPath(listaenlazada.current.path);
                         }
+                        controller.getIteracionesBB(Integer.parseInt(mensaje1[2]));
                     } catch (IOException e) {
                         System.out.println("Error recibiendo mensaje del servidor");
                         break;

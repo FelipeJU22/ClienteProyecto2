@@ -36,34 +36,42 @@
       <font>
          <Font name="DejaVu Serif Condensed Bold" size="12.0" />
       </font></Label>
-   <Pane prefHeight="198.0" prefWidth="512.0">
+   <Pane prefHeight="256.0" prefWidth="512.0">
       <children>
-         <Button fx:id="a" layoutX="285.0" layoutY="66.0" mnemonicParsing="false" onAction="#pasarPal" prefHeight="14.0" prefWidth="26.0" style="-fx-background-color: #b5bac9;" text="&gt;">
+         <Button fx:id="a" layoutX="285.0" layoutY="100.0" mnemonicParsing="false" onAction="#pasarPal" prefHeight="14.0" prefWidth="26.0" style="-fx-background-color: #b5bac9;" text="&gt;">
             <font>
                <Font name="DejaVu Sans Condensed Bold" size="12.0" />
             </font>
          </Button>
-         <Button fx:id="b" layoutX="200.0" layoutY="66.0" mnemonicParsing="false" onAction="#antPal" style="-fx-background-color: #b5bac9;" text="&lt;">
+         <Button fx:id="b" layoutX="200.0" layoutY="100.0" mnemonicParsing="false" onAction="#antPal" style="-fx-background-color: #b5bac9;" text="&lt;">
             <font>
                <Font name="DejaVu Sans Condensed Bold" size="12.0" />
             </font>
          </Button>
-         <Label fx:id="posicion" layoutX="237.0" layoutY="71.0" text="0 de 0">
+         <Label fx:id="posicion" alignment="CENTER" layoutX="230.0" layoutY="104.0" prefHeight="15.0" prefWidth="52.0" text="0 de 0">
             <font>
                <Font name="DejaVu Sans Condensed Bold" size="12.0" />
             </font>
          </Label>
-         <TextArea fx:id="textA" editable="false" layoutX="112.0" layoutY="6.0" prefHeight="45.0" prefWidth="288.0" style="-fx-background-color: #b5bac9;" />
-         <Button fx:id="aa" layoutX="200.0" layoutY="103.0" mnemonicParsing="false" onAction="#colocar" style="-fx-background-color: #b5bac9;" text="Colocar palabra">
+         <TextArea fx:id="textA" editable="false" layoutX="172.0" layoutY="8.0" prefHeight="23.0" prefWidth="169.0" style="-fx-background-color: #b5bac9;" />
+         <Button fx:id="aa" layoutX="207.0" layoutY="133.0" mnemonicParsing="false" onAction="#colocar" style="-fx-background-color: #b5bac9;" text="Colocar frase">
             <font>
                <Font name="DejaVu Serif Condensed Bold" size="12.0" />
             </font>
          </Button>
-         <Button fx:id="ab" layoutX="196.0" layoutY="152.0" mnemonicParsing="false" onAction="#getPath" style="-fx-background-color: #b5bac9;" text="Abrir documento">
+         <Button fx:id="ab" layoutX="197.0" layoutY="207.0" mnemonicParsing="false" onAction="#getPath" style="-fx-background-color: #b5bac9;" text="Abrir documento">
             <font>
                <Font name="DejaVu Serif Condensed Bold" size="12.0" />
             </font>
          </Button>
+         <Button fx:id="botonEliminar" layoutX="188.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-color: #b5bac9;" text="Obtener iteraciones">
+            <font>
+               <Font name="DejaVu Serif Condensed Bold" size="12.0" />
+            </font>
+         </Button>
+         <Label fx:id="pal1" alignment="CENTER_RIGHT" layoutX="152.0" layoutY="59.0" prefHeight="17.0" prefWidth="64.0" style="-fx-background-color: white;" />
+         <Label fx:id="pal2" alignment="CENTER" layoutX="215.0" layoutY="59.0" prefHeight="17.0" prefWidth="82.0" style="-fx-background-color: white;" textFill="#972c2c" />
+         <Label fx:id="pal3" layoutX="297.0" layoutY="59.0" prefHeight="17.0" prefWidth="72.0" style="-fx-background-color: white;" />
       </children>
    </Pane>
 </VBox>

@@ -91,7 +91,11 @@ public class LinkedList{
     /**
      * Método para borrar el último elemento de la lista
      */
-    public void deleteLast(){
+    public void delete(){
+        head = null;
+        tail = null;
+        current = null;
+        size = 0;
     }
     /**
      * Método para mostrar los elementos de la lista
