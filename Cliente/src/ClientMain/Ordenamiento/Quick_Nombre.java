@@ -1,7 +1,8 @@
 package ClientMain.Ordenamiento;
 /**
  * Clase QuickSort
- * Utilizada para ordenar documentos por su nombre
+ * Utilizada para ordenar strings por su nombre
+ * Recuperada de : <a href="https://parzibyte.me/blog/2019/12/26/quicksort-java-ordenar-arreglos/">...</a>
  */
 public class Quick_Nombre {
 private static int particion(String[] arreglo, int izquierda, int derecha) {

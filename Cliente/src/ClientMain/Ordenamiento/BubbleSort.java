@@ -1,5 +1,7 @@
 package ClientMain.Ordenamiento;
-//https://www.geeksforgeeks.org/bubble-sort/
+/**
+ * Clase que ordena datos de menor a mayor, recuperado de : <a href="https://www.geeksforgeeks.org/bubble-sort/">...</a>
+ */
 
 public class BubbleSort {
     public static void bubbleSort(int arr[])

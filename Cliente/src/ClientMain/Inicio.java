@@ -238,6 +238,9 @@ public class Inicio implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     }
+    /**
+     * Método que ordena los datos de la tabla y los paths que envía el sistema, en orden alfabetico
+     */
     public void ordenarQuick(ActionEvent event) {
         lista.clear();
         String[] listaaa = listaNombre;
@@ -251,6 +254,9 @@ public class Inicio implements Initializable{
         this.cantidad.setCellValueFactory(new PropertyValueFactory<>("cantPal"));
         this.tabla.setItems(lista);
     }
+    /**
+     * Método que ordena los datos de la tabla y los paths que envía el sistema, en orden de fecha de más vieja a más nueva
+     */
     public void ordenarBubble(ActionEvent event){
         lista.clear();
         int[] milisegundos = new int[listaFecha.length];
@@ -271,6 +277,9 @@ public class Inicio implements Initializable{
         this.tabla.setItems(lista);
 
     }
+    /**
+     * Método que ordena los datos de la tabla y los paths que envía el sistema, en orden ascendente con la cantidad de palabras
+     */
     public void ordenarRadix(ActionEvent event){
         lista.clear();
         int[] radixList = listaPal;

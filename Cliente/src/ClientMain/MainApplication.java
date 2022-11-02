@@ -29,7 +29,9 @@ public class MainApplication extends Application {
         //stage.getIcons().add(new Image("C:\\Users\\Yoshant\\Documents\\Felipe\\TEC\\2do Semestre\\Algoritmos y Estructuras de Datos I\\Proyecto 2\\Cliente\\src\\Imágenes\\icono.PNG"));
         stage.show();
     }
-
+    /**
+     * Método que lanza el programa
+     */
     public static void main(String[] args) throws Exception{
         launch();
     }

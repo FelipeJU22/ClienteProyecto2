@@ -177,6 +177,9 @@ public class MainController implements Initializable {
         File objetoFile = new File(direccion.replace(" ",""));
         Desktop.getDesktop().open(objetoFile);
     }
+    /**
+     * Método que obtiene la cantidad de iteraciones realizadas por el árbol binario.
+     */
     public void getIteracionesBB(int cont){
         MainController.iteracionesBB = cont;
     }
